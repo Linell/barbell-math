@@ -31,10 +31,22 @@ class App extends React.Component {
     var availablePlates = [45, 25, 10, 5, 2.5]
     var platePairs      = [];
 
+    // Invalid weight errors                                                    {{{
+    // ----------------------------------------------------------------------------
     if ((weight % 5) != 0) {
       Alert.alert('Oops!', "Your weights must be fancier than mine, because I can't figure out that math.")
       return -1
     }
+
+    if (remainingWeight == 0) {
+      platePairs.push("Just use the bar for now. It'll go up soon.")
+    }
+
+    if (remainingWeight < 0) {
+      platePairs.push("I don't think there's an easy way to load " + remainingWeight + " on the bar.")
+    }
+
+    // }}}
 
     while (remainingWeight > 0) {
       lookingFor      = remainingWeight / 2;
